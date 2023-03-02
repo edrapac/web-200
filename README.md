@@ -3,8 +3,9 @@
 ### Discovery
 * sudo nmap -sS -sV -Pn -A ip_addr
 * File / directory discovery
-	*  wfuzz -c -z file,/usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt --hc 301,404,403 http://site/FUZZ (or use raft-medium-files.txt)
-	* dirsearch -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt -u URL --full-url (add -e extension such as -e php for specific extension targeting) (or use raft-medium-files.txt)
+	*  wfuzz -c -z file,/usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt --hc 301,404,403 http://site/FUZZ (<b>FOR FILES</b> use raft-medium-files.txt)
+	* dirsearch -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt -u URL --full-url (add -e extension such as -e php for specific extension targeting) (<b>FOR FILES</b> use raft-medium-files.txt)
+	* dirb (with php extension, ignore 403, and milliseconds throttled to 100) - dirb http://host/ raft-medium-directories.txt -N 403 -X .php -z 100
 	* gobuster dir -u $URL -w /usr/share/wordlists/dirb/common.txt -t 5 -b 301
 	* gobuster dns -d megacorpone.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 30
 * Pw / Username discovery - cewl
