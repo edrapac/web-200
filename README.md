@@ -1,14 +1,14 @@
 ﻿# Web 200 Checklist
 
 ### Discovery
-* sudo nmap -sS -sV -Pn -A ip_addr
+* sudo nmap -v -sS -sV -Pn -A ip_addr
 * File / directory discovery
 	*  wfuzz -c -z file,/usr/share/seclists/Discovery/Web-Content/raft-medium-files.txt --hc 301,404,403 http://site/FUZZ (<b>FOR DIRECTORIES</b> use raft-medium-directories.txt)
 	* dirsearch -w /usr/share/seclists/Discovery/Web-Content/raft-medium-files.txt -u URL --full-url (add -e extension such as -e php for specific extension targeting) (<b>FOR DIRECTORIES</b> use raft-medium-directories.txt)
 	* dirb (with php extension, ignore 403, and milliseconds throttled to 100) - dirb http://host/ raft-medium-directories.txt -N 403 -X .php -z 100
 	* gobuster dir -u $URL -w /usr/share/wordlists/dirb/common.txt -t 5 -b 301
 	* gobuster dns -d megacorpone.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 30
-* Pw / Username discovery - cewl
+* Pw / Username discovery - cewl - `cewl -d 2 -m 5 -w docswords.txt https://example.com`
 * Binary discovery on box: ` which nc socat curl wget bash sh`
 ## Test All Of These Scenarios!
 ### XSS (All code here is from the course material / notes)
