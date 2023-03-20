@@ -2,15 +2,25 @@
 
 ### Discovery
 * sudo nmap -v -sS -sV -Pn -A ip_addr
-* File / directory discovery
+* File / directory discovery (note sometimes you also want to dirbust more than just the web root ie dirbusting against http://site/login.php/FUZZ)
 	*  wfuzz -c -z file,/usr/share/seclists/Discovery/Web-Content/raft-large-files.txt --hc 301,404,403 http://site/FUZZ (<b>FOR DIRECTORIES</b> use raft-large-directories.txt)
 	* dirsearch -w /usr/share/seclists/Discovery/Web-Content/raft-large-files.txt -u URL --full-url (add -e extension such as -e php for specific extension targeting) (<b>FOR DIRECTORIES</b> use raft-large-directories.txt)
 	* dirb (with php extension, ignore 403, and milliseconds throttled to 100) - dirb http://host/ raft-medium-directories.txt -N 403 -X .php -z 100
 	* gobuster dir -u $URL -w /usr/share/wordlists/dirb/common.txt -t 5 -b 301
 	* gobuster dns -d megacorpone.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 30
+
 * Pw / Username discovery - cewl - `cewl -d 2 -m 5 -w docswords.txt https://example.com`
 * Binary discovery on box: ` which nc socat curl wget bash sh`
 ## Test All Of These Scenarios!
+- [] cewl/dirsearch
+- [] xss
+- [] xss w/cross origin
+- [] SQLi
+- [] LFI/Directory Traversal
+- [] XXE
+- [] SSTI
+- [] OS injection
+- [] Server Side Request Forgery
 ### XSS (All code here is from the course material / notes)
 * Discovery
 	* `<script>alert(1)</script>`
