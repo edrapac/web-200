@@ -35,14 +35,16 @@
     * [ ] SSTI
     * [ ] EL Language
     * [ ] File Upload
-    * [ ] Command Injection 
+    * [ ] Command Injection
 * [ ] Business Logic Flaws
 * [ ] Server Configs
     * [ ] CSRF
     * [ ] Info Disclosure - Fuzz All non destructive parameterized queries
     * [ ] LFI/Directory Traversal
-    * [ ] Cookies? 
-        * [ ] HttpOnly and Secure set? 
+    * [ ] Cookies?
+        * [ ] HttpOnly and Secure set?
+    * [ ] CSP Set Correctly?
+    * [ ] HSTS Set Correctly?
 * [ ] AuthN
     * [ ] Auth Bypass?
         * [ ] Bypass the auth flow?
