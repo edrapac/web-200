@@ -8,6 +8,7 @@
 	* dirb (with php extension, ignore 403, and milliseconds throttled to 100) - dirb http://host/ raft-medium-directories.txt -N 403 -X .php -z 100
 	* dirb http://host/
 	* gobuster dir -u $URL -w /usr/share/wordlists/dirb/common.txt -t 5 -b 301
+	* gobuster dir -u https://example.com -w /wordlists/Discovery/Web-Content/big.txt  -x .php (gobuster with extensions)
 	* gobuster dns -d megacorpone.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 30
 
 * Pw / Username discovery - cewl - `cewl -d 2 -m 5 -w docswords.txt https://example.com`
