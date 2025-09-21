@@ -19,6 +19,7 @@
     * gobuster dns -d megacorpone.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 30
     * gobuster vhost -u https://example.com -t 50 -w /wordlists/Discovery/DNS/subdomains-top1million-5000.txt
     * nuclei -u http://example.com/
+    * wappalyzer (browser extension) or whatweb (whatweb https://example.com) for tech stack identification
     * Burp Scan (If applicable)
 * Pw / Username discovery - cewl - `cewl -d 2 -m 5 -w docswords.txt https://example.com`
 
