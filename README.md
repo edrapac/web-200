@@ -33,6 +33,9 @@
     * [ ] SQLi
     * [ ] XSS
     * [ ] XXE (If applicable)
+    * [ ] SSRF
+    	* [ ] Templating language?
+     	* [ ] Does the site encourage / accept URLs **AS** a parameter such as submitting a profile pic URL?
     * [ ] SSTI
     * [ ] EL Language
     * [ ] File Upload
